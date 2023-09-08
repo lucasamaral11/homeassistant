@@ -175,7 +175,7 @@ main() {
   update_hostname
 #  update_armbian
   repair_apparmor_and_cgroups
-  install_armbian-software
+#  install_armbian-software
   update_operating_system
   install_dependences
   install_docker
