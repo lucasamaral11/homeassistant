@@ -49,13 +49,13 @@ repair_apparmor_and_cgroups() {
 # ------------------------------------------------------------------------------
 # Armbian update
 # ------------------------------------------------------------------------------
-update_armbian() {
-    echo ""
-    echo "A atualizar armbian"
-    echo ""
-    armbian-update
-}
-
+# update_armbian() {
+#    echo ""
+#    echo "A atualizar armbian"
+#    echo ""
+#    armbian-update
+#}
+#
 # ------------------------------------------------------------------------------
 # change operating system
 # ------------------------------------------------------------------------------
@@ -71,12 +71,12 @@ update_operating_system() {
 # ------------------------------------------------------------------------------
 # Installs armbian software
 # ------------------------------------------------------------------------------
-install_armbian-software() {
-  echo ""
-  echo "A instalar Armbian Software..."
-  echo ""
-  armbian-software || :
-}
+#install_armbian-software() {
+#  echo ""
+#  echo "A instalar Armbian Software..."
+#  echo ""
+#  armbian-software || :
+#}
 
 
 # ------------------------------------------------------------------------------
