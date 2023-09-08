@@ -173,7 +173,6 @@ main() {
 
   # Install ALL THE THINGS!
   update_hostname
-#  update_armbian
   repair_apparmor_and_cgroups
   install_armbian-software
   update_operating_system
@@ -182,6 +181,7 @@ main() {
   install_osagents
   install_hassio
 #  journalct
+#  update_armbian
 
   # Friendly closing message
   ip_addr=$(hostname -I | cut -d ' ' -f1)
