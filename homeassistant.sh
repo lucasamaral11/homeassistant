@@ -71,12 +71,12 @@ set -o pipefail # Return exit status of the last command in the pipe that failed
 # ------------------------------------------------------------------------------
 # Installs armbian software
 # ------------------------------------------------------------------------------
-install_armbian-software() {
-  echo ""
-  echo "A instalar Armbian Software..."
-  echo ""
-  armbian-software || :
-}
+#install_armbian-software() {
+#  echo ""
+#  echo "A instalar Armbian Software..."
+#  echo ""
+#  armbian-software || :
+#}
 
 
 # ------------------------------------------------------------------------------
@@ -175,8 +175,8 @@ main() {
  # update_hostname
  # update_armbian
  # repair_apparmor_and_cgroups
-  install_armbian-software
-  update_operating_system
+ # install_armbian-software
+ # update_operating_system
  # install_dependences
  # install_docker
  # install_osagents
