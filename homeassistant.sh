@@ -13,7 +13,7 @@ set -o pipefail # Return exit status of the last command in the pipe that failed
 # ==============================================================================
 # GLOBALS
 # ==============================================================================
-readonly HOSTNAME="homeassistant"
+# readonly HOSTNAME="homeassistant"
 
 # ==============================================================================
 # SCRIPT LOGIC
@@ -22,51 +22,51 @@ readonly HOSTNAME="homeassistant"
 # ------------------------------------------------------------------------------
 # Ensures the hostname of the Pi is correct.
 # ------------------------------------------------------------------------------
-update_hostname() {
-    hostname
-    sudo hostname homeassistant
-    hostname "${HOSTNAME}"
-    echo ""
-    echo "O nome do host será alterado na próxima reinicialização para: ${HOSTNAME}"
-    echo ""
+#update_hostname() {
+#    hostname
+#    sudo hostname homeassistant
+#    hostname "${HOSTNAME}"
+#    echo ""
+#    echo "O nome do host será alterado na próxima reinicialização para: ${HOSTNAME}"
+#    echo ""
 
-}
+#}
 
 # ------------------------------------------------------------------------------
 # Repair apparmor and cgroups
 # ------------------------------------------------------------------------------
-repair_apparmor_and_cgroups() {
-    echo ""
-    echo "A reparar alertas de apparmor e cgroups"
-    echo ""
-  if ! grep -q "cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=false apparmor=1 security=apparmor" "/boot/uEnv.txt"; then
-    sed -i 's/APPEND.*/& cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=false apparmor=1 security=apparmor/g' /boot/uEnv.txt
-  fi
-}
+#repair_apparmor_and_cgroups() {
+#    echo ""
+#    echo "A reparar alertas de apparmor e cgroups"
+#    echo ""
+#  if ! grep -q "cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=false apparmor=1 security=apparmor" "/boot/uEnv.txt"; then
+#    sed -i 's/APPEND.*/& cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=false apparmor=1 security=apparmor/g' /boot/uEnv.txt
+#  fi
+#}
 
 
 
 # ------------------------------------------------------------------------------
 # Armbian update
 # ------------------------------------------------------------------------------
-update_armbian() {
-    echo ""
-    echo "A atualizar armbian"
-    echo ""
-    armbian-update
-}
+#update_armbian() {
+#    echo ""
+#    echo "A atualizar armbian"
+#    echo ""
+#    armbian-update
+#}
 
 # ------------------------------------------------------------------------------
 # change operating system
 # ------------------------------------------------------------------------------
-update_operating_system() {
-    echo ""
-    echo "A resolver o alerta de sistema incompatível..."
-    echo ""
+#update_operating_system() {
+#    echo ""
+#    echo "A resolver o alerta de sistema incompatível..."
+#    echo ""
 #    sed -i 's#Armbian 23.08.0-trunk Bookworm#Debian GNU/Linux 11 (bullseye)#g'  /etc/os-release
 #    sed -i 's#Armbian 23.02.0-trunk Bullseye#Debian GNU/Linux 11 (bullseye)#g'  /etc/os-release
 #    sed -i 's/Armbian 23.02.0-trunk Bullseye/Debian GNU/Linux 11 (bullseye)/g' etc/os-release
-}
+#}
 
 # ------------------------------------------------------------------------------
 # Installs armbian software
@@ -82,24 +82,24 @@ install_armbian-software() {
 # ------------------------------------------------------------------------------
 # Installs dependences
 # ------------------------------------------------------------------------------
-install_dependences() {
-  echo ""
-  echo "A instalar dependencias..."
-  echo ""
-  
-  apt install \
-  apparmor \
-  jq \
-  wget \
-  curl \
-  udisks2 \
-  libglib2.0-bin \
-  network-manager \
-  dbus \
-  lsb-release \
-  systemd-journal-remote \
-  systemd-resolved -y
-}
+#install_dependences() {
+#  echo ""
+#  echo "A instalar dependencias..."
+#  echo ""
+#  
+#  apt install \
+#  apparmor \
+#  jq \
+#  wget \
+#  curl \
+#  udisks2 \
+#  libglib2.0-bin \
+#  network-manager \
+#  dbus \
+#  lsb-release \
+#  systemd-journal-remote \
+#  systemd-resolved -y
+#}
 
 # ------------------------------------------------------------------------------
 # journalctl
@@ -114,31 +114,31 @@ install_dependences() {
 # ------------------------------------------------------------------------------
 # Installs the Docker engine
 # ------------------------------------------------------------------------------
-install_docker() {
-  echo ""
-  echo "A instalar Docker..."
-  echo ""
+#install_docker() {
+#  echo ""
+#  echo "A instalar Docker..."
+#  echo ""
 #  curl -fsSL https://get.docker.com | sh
-  curl -fsSL get.docker.com | sh
-}
+#  curl -fsSL get.docker.com | sh
+#}
 
 # ------------------------------------------------------------------------------
 # Install os-agents
 # ------------------------------------------------------------------------------
-install_osagents() {
-  echo ""
-  echo "A instalar os agents..."
-  echo ""
+#install_osagents() {
+#  echo ""
+#  echo "A instalar os agents..."
+#  echo ""
 #  wget https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_aarch64.deb
-  wget https://github.com/home-assistant/os-agent/releases/download/1.5.1/os-agent_1.5.1_linux_aarch64.deb
-  sudo dpkg -i os-agent_1.5.1_linux_aarch64.deb
-  gdbus introspect --system --dest io.hass.os --object-path /io/hass/os
-  systemctl status haos-agent --no-pager
+#  wget https://github.com/home-assistant/os-agent/releases/download/1.5.1/os-agent_1.5.1_linux_aarch64.deb
+#  sudo dpkg -i os-agent_1.5.1_linux_aarch64.deb
+#  gdbus introspect --system --dest io.hass.os --object-path /io/hass/os
+#  systemctl status haos-agent --no-pager
 
 #  wget https://github.com/home-assistant/os-agent/releases/download/1.4.1/os-agent_1.4.1_linux_aarch64.deb
 #  sudo dpkg -i os-agent_1.4.1_linux_aarch64.deb
 #  gdbus introspect --system --dest io.hass.os --object-path /io/hass/os
-}
+#}
 
 # ------------------------------------------------------------------------------
 # Installs and starts Hass.io
@@ -172,14 +172,14 @@ main() {
   fi
 
   # Install ALL THE THINGS!
-  update_hostname
-  update_armbian
-  repair_apparmor_and_cgroups
+ # update_hostname
+ # update_armbian
+ # repair_apparmor_and_cgroups
   install_armbian-software
   update_operating_system
-  install_dependences
-  install_docker
-  install_osagents
+ # install_dependences
+ # install_docker
+ # install_osagents
   install_hassio
 #  journalct
 
